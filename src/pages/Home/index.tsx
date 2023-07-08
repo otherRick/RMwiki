@@ -1,23 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { loginSlice } from '../Login/slice/homeSlice';
+import { useSelector } from 'react-redux';
 import { GithubLogo, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
+import BrandAndLogout from './_components/BrandAndLogout';
 
 export default function Home() {
-  const dispatch = useDispatch();
   const user = useSelector((state: any) => state.loginReducer);
   const navigate = useNavigate();
 
   return (
     <main className='bg-zinc-800 h-screen flex flex-col items-center justify-center'>
-      <button
-        onClick={() => dispatch(loginSlice.actions.setLogin({ registered: false }))}
-        className='text-red-400 font-semibold fixed md:top-24 top-5 right-10 text-xs '
-      >
-        logout
-      </button>
-
-      <body className='items-center flex flex-col'>
+      <BrandAndLogout />
+      <section className='items-center flex flex-col'>
         <div className='flex flex-col items-center justify-center'>
           <h1 className='text-white md:text-4xl text-lg font-bold'>Welcome to RM Wiki</h1>
           <p className='text-white md:text-xl text-xs font-semibold'>
@@ -36,16 +29,16 @@ export default function Home() {
           />
         </div>
         <button
-          onClick={() => navigate('/shopping')}
+          onClick={() => navigate('/shop')}
           className='
           bg-zinc-500 hover:bg-zinc-400
           text-white font-bold py-2 px-4 rounded
           mt-10
           '
         >
-          Go Shopping
+          Go Shop
         </button>
-      </body>
+      </section>
       <footer
         className='
      hidden md:flex flex-col items-center justify-center
