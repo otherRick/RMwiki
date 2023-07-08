@@ -12,7 +12,7 @@ export default function TabNavigator() {
             className='  text-indigo-50 hover:text-indigo-400 font-semibold'
           />
         </button>
-        <button onClick={() => navigation('/shopping')}>
+        <button onClick={() => navigation('/shop')}>
           <Storefront size={30} className='  text-indigo-50 hover:text-indigo-400 font-semibold' />
         </button>
         <button onClick={() => navigation('/cart')}>
