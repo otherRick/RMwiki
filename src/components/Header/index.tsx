@@ -1,12 +1,14 @@
 import { HouseSimple, ShoppingCartSimple, Storefront } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
 import PageBrand from '../PageBrand';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginSlice } from '../../pages/Login/slice/homeSlice';
 
 export default function Header() {
   const dispatch = useDispatch();
   const navitate = useNavigate();
+  const useShop = useSelector((state: any) => state.cartReducer.data.length);
+
   return (
     <header
       className='hidden h-20 md:flex items-center justify-between pl-10 pr-10 w-full
@@ -27,11 +29,17 @@ export default function Header() {
             Shop
           </button>
         </div>
-        <div className=' flex flex-col items-center '>
+        <div
+          onClick={() => navitate('/cart')}
+          className=' cursor-pointer flex flex-col items-center '
+        >
           <ShoppingCartSimple color='white' size={20} />
-          <button className='text-white' onClick={() => navitate('/cart')}>
-            Cart
-          </button>
+          <button className='text-white'>Cart</button>
+          {useShop > 0 ? (
+            <div className='w-3 h-3 items-center justify-center flex rounded-full bg-red-500 absolute '>
+              <p className=' text-white text-xs'>{useShop}</p>
+            </div>
+          ) : null}
         </div>
         <button
           onClick={() => dispatch(loginSlice.actions.setLogin({ registered: true }))}
